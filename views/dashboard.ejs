@@ -1,7 +1,45 @@
-
 <script src="jquery-3.4.0.min.js"></script>
 <h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome!! <%= user.name %></p>
+<p class="lead mb-3">Welcome!!? <%= user.name %></p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
-<table id="myTable">
+
+<h3><a class="btn btn-secondary" href="/employee"><i class="fa fa-plus"></i> Create New</a> Employee List</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.fullName}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.mobile}}</td>
+            <td>{{this.city}}</td>
+            <td>
+                <a href="/employee/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/employee/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
 </table>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script><script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<div class="container">
+<div class="ZipDatatable"><table id="ZipcodesTable" class="table table-bordered table-sm">
+<thead>
+<tr>
+<th>ZipCode</th>
+<th>City</th>
+<th>Population</th>
+<th>State</th>
+</tr></thead><tbody></tbody>
+</table>
+</div>
