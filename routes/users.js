@@ -9,7 +9,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 router.get('/', forwardAuthenticated , (req, res) => res.render('welcome'));
 
 // Load User model
-const User = require('../models/User');
+const User = require('../models/user');
 
 // Login Page
 router.get('/users/login', forwardAuthenticated, (req, res) => res.render('login'));
