@@ -3,33 +3,46 @@ const mongoose = require('mongoose');
 var employeeSchema = new mongoose.Schema({
     fullName: {
         type: String,
-        required: 'This field is required.'
+        required: 'This field is required.',
+		trim: true
     },
 	vehicle: {
         type: String,
-        required: 'This field is required.'
+        required: 'This field is required.',
+		trim: true
     },
 	treatment: {
         type: String,
+		trim: true
     },
 	cost: {
         type: Number,
-		required: 'This field is required and must be a number.'
+		required: 'This field is required and must be a number.',
+		trim: true
     },
 	created_at: {
-        type: Date,
-		default: Date.now
+        type: String,
+		//default: Date.now,
+		trim: true
     },
     mobile: {
         type: Number,
-		required: 'This field is required and must be a number.'
+		required: 'This field is required and must be a number.',
+		trim: true
     },
 	email: {
-        type: String
+        type: String,
+		trim: true
     },    
     city: {
-        type: String
+        type: String,
+		trim: true
+    },
+	img: {
+        type: String,
+		trim: true
     }
+	
 });
 
 // Custom validation for email

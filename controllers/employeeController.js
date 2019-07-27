@@ -1,12 +1,13 @@
 const express = require('express');
 var router = express.Router();
+var moment = require('moment');
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 router.get('/',ensureAuthenticated, (req, res) => {
     res.render("employee/addOrEdit", {
-        viewTitle: "Insert Employes"
+        viewTitle: "Insert a New Treatment"
     });
 });
 
@@ -21,16 +22,51 @@ router.post('/',ensureAuthenticated, (req, res) => {
 function insertRecord(req, res) {
     var employee = new Employee();
     employee.fullName = req.body.fullName;
-	
 	employee.vehicle = req.body.vehicle;
 	employee.treatment = req.body.treatment;
 	employee.cost = req.body.cost;
-	employee.created_at = req.body.created_at;
-	//employee.startedDate = Date.now;
-	
+	employee.created_at = moment().format('MMMM Do YYYY, h:mm:ss a');
     employee.mobile = req.body.mobile;
 	employee.email = req.body.email;
     employee.city = req.body.city;
+	
+	
+	switch (employee.vehicle) {
+		case 'Colorado':
+            employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-colorado-1.jpg";
+            break;
+		case 'Cruze':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-cruze-1.jpg";
+			break;
+		case 'Equinox':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-equinox-1.jpg";
+			break;
+		case 'Impala':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-impala-1.jpg";
+			break;
+		case 'Malibu':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-malibu-1.jpg";
+			break;
+		case 'Silverado':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-silverado-1.jpg";
+			break;
+		case 'Suburban':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-suburban-1.jpg";
+			break;
+		case 'Tahoe':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-tahoe-1.jpg";
+			break;
+		case 'Raverse':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-traverse-1.jpg";
+			break;
+		case 'Trax':
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-trax-1.jpg";
+			break;
+		default:
+			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png";
+			break;
+    }
+	
 	
     employee.save((err, doc) => {
         if (!err)
@@ -39,7 +75,7 @@ function insertRecord(req, res) {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
                 res.render("employee/addOrEdit", {
-                    viewTitle: "Insert Employee",
+                    viewTitle: "Insert a New Treatment",
                     employee: req.body
                 });
             }
@@ -66,12 +102,12 @@ function updateRecord(req, res) {
     });
 }
 
-
 router.get('/list',ensureAuthenticated, (req, res) => {
     Employee.find((err, docs) => {
         if (!err) {
             res.render("employee/list", {
-                list: docs
+                viewTitle: "Treatments List" ,
+				list: docs
             });
         }
         else {
@@ -99,6 +135,7 @@ function handleValidationError(err, body) {
                 body['emailError'] = err.errors[field].message;
                 break;
             default:
+				body['generalError'] = err.errors[field].message;
                 break;
         }
     }
