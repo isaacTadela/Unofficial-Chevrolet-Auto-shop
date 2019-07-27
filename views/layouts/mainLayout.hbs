@@ -30,9 +30,10 @@
 		}],
 		
 		rowCallback: function(row, data, displayNum, displayIndex, dataIndex) {
-		  $(row).attr('title', data[2])
-		  
+		  $(row).tooltip({ content: '<img src="" />' });
+		  //$(row).attr('title', "<img src='"+data[2]+"'/>"  )
 		}
+		
 	  });
 	} );
 	</script>
@@ -40,11 +41,12 @@
 	<style>
 	body  {
 	  background-image: url("https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-masthead-01.jpg");
-	  background-position: center;
-	  <!--background-size: cover; -->
-	  height: 590px;
+	  background-size: 100% 100%;
+	  background-attachment:fixed;
 	}
+	
 	</style>
+	
 	
 	
 </head>
