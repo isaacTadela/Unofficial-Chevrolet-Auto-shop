@@ -30,7 +30,6 @@ function insertRecord(req, res) {
 	employee.email = req.body.email;
     employee.city = req.body.city;
 	
-	
 	switch (employee.vehicle) {
 		case 'Colorado':
             employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-colorado-1.jpg";
@@ -56,7 +55,7 @@ function insertRecord(req, res) {
 		case 'Tahoe':
 			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-tahoe-1.jpg";
 			break;
-		case 'Raverse':
+		case 'Traverse':
 			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-traverse-1.jpg";
 			break;
 		case 'Trax':
@@ -66,7 +65,6 @@ function insertRecord(req, res) {
 			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png";
 			break;
     }
-	
 	
     employee.save((err, doc) => {
         if (!err)
@@ -86,8 +84,48 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
+	
+	switch (req.body.vehicle) {
+		case 'Colorado':
+            req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-colorado-1.jpg";
+            break;
+		case 'Cruze':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-cruze-1.jpg";
+			break;
+		case 'Equinox':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-equinox-1.jpg";
+			break;
+		case 'Impala':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-impala-1.jpg";
+			break;
+		case 'Malibu':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-malibu-1.jpg";
+			break;
+		case 'Silverado':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-silverado-1.jpg";
+			break;
+		case 'Suburban':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-suburban-1.jpg";
+			break;
+		case 'Tahoe':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-tahoe-1.jpg";
+			break;
+		case 'Traverse':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-traverse-1.jpg";
+			break;
+		case 'Trax':
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-trax-1.jpg";
+			break;
+		default:
+			req.body.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png";
+			break;
+    }
+	
     Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-        if (!err) { res.redirect('employee/list'); }
+		
+	if (!err) { 
+		
+        res.redirect('employee/list'); }
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
@@ -98,7 +136,7 @@ function updateRecord(req, res) {
             }
             else
                 console.log('Error during record update : ' + err);
-        }
+     }
     });
 }
 
@@ -145,7 +183,7 @@ router.get('/:id',ensureAuthenticated, (req, res) => {
     Employee.findById(req.params.id, (err, doc) => {
         if (!err) {
             res.render("employee/addOrEdit", {
-                viewTitle: "Update Employee",
+                viewTitle: "Update Treatment",
                 employee: doc
             });
         }

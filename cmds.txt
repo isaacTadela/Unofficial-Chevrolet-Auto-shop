@@ -1,0 +1,77 @@
+
+create an instance;
+change the ip config in the 'Configure Security Group' and downloade pem key
+;
+'Security group':
+Security group name 'Node'
+
+Description 'Node'
+	'Type'
+
+		HTTP			80		Anywhere
+		HTTPS			443		Anywhere		
+		Custom TCP Rule		8080		Anywhere
+
+		Custom TCP Rule		5000		Anywhere
+
+
+
+go to the key location
+cmd: ssh -i k.pem ubuntu@ec2-35-181-62-84.eu-west-3.compute.amazonaws.com
+if @@ WARNING: UNPROTEXTED PRIVATE KEY FILE! @@
+
+ls -l
+
+chown :Users k.pem
+
+chmod 400 k.pem
+
+ssh -i k.pem ubuntu@ec2-35-181-62-84.eu-west-3.compute.amazonaws.com
+
+
+sudo apt-get update
+sudo apt-get install libssl-dev g++ make
+sudo apt-get install nodejs
+wget https://nodejs.org/dist/v10.16.0/node-v10.16.0.tar.gz
+(node js link, it will downloade tar file)
+
+git clone https://github.com/isaacTadela/webProj.git
+(git link, it will downloade zip file)
+
+tar -xvf node-v10.16.0.tar.gz
+(extract it)
+
+cd node-v10.16.0.tar.gz/
+./configure && make && sudo make install
+(i didnt needed this step)
+cd ../
+mkdir test1
+
+rm -rf test1
+
+cd test1
+
+vim test1.js
+
+(write your js code, server, and exit by pressing Esc and insert
+:x to save&exit file
+
+:q! to exit without saving)
+
+node test1.js
+
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+
+sudo node test1.js &
+
+ps -ef (show the runing threds list)
+
+kill (pid)
+
+nohup node app.js &
+
+sudo reboot
+
+
+ec2-52-47-161-107.eu-west-3.compute.amazonaws.com
+ec2-15-188-8-67.eu-west-3.compute.amazonaws.com

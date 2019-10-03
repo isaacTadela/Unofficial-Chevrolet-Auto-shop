@@ -40,7 +40,7 @@ var employeeSchema = new mongoose.Schema({
     },
 	img: {
         type: String,
-		trim: true
+		//trim: true
     }
 	
 });
