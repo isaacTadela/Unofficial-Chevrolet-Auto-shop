@@ -72,6 +72,5 @@ nohup node app.js &
 
 sudo reboot
 
-
 ec2-52-47-161-107.eu-west-3.compute.amazonaws.com
 ec2-15-188-8-67.eu-west-3.compute.amazonaws.com
