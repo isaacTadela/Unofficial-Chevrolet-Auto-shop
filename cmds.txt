@@ -17,7 +17,8 @@ Description 'Node'
 
 
 go to the key location
-cmd: ssh -i k.pem ubuntu@ec2-35-181-62-84.eu-west-3.compute.amazonaws.com
+cmd: 
+ssh -i k.pem ubuntu@ec2-35-180-227-17.eu-west-3.compute.amazonaws.com
 if @@ WARNING: UNPROTEXTED PRIVATE KEY FILE! @@
 
 ls -l
