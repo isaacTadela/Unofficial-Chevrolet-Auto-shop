@@ -3,17 +3,17 @@
 	
 <h3>{{viewTitle}}<a class="btn btn-secondary" href="/users/logout" style="float: right;"><i class="fas fa-sign-out-alt"></i> Log out</a></h3>
 
-<form action="/employee" method="POST" autocomplete="off" >
-    <input type="hidden" name="_id" value="{{employee._id}}">
+<form action="/treatments" method="POST" autocomplete="off" >
+    <input type="hidden" name="_id" value="{{treatment._id}}">
     <div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Full Name</label>
-			<input type="text" class="form-control" name="fullName" placeholder="Full Customer Name" value="{{employee.fullName}}">
-			<div class="text-danger">{{employee.fullNameError}}</div>
+			<input type="text" class="form-control" name="fullName" placeholder="Full Customer Name" value="{{treatment.fullName}}">
+			<div class="text-danger">{{treatment.fullNameError}}</div>
 		</div>
 		<div class="form-group col-md-6">
 			<label>Vehicle model</label>
-			<select type="text" class="form-control" name="vehicle" value="{{employee.vehicle}}">
+			<select type="text" class="form-control" name="vehicle" value="{{treatment.vehicle}}">
 				<option name="colorado">Colorado</option>
 				<option name="cruze">Cruze</option>
 				<option name="equinox">Equinox</option>
@@ -26,45 +26,45 @@
 				<option name="trax">Trax</option>
 			</select>
 			<div class="text-danger">
-				{{employee.vehicleError}}</div>
+				{{treatment.vehicleError}}</div>
 		</div>
     </div>
 	
 	<div class="form-row">
 		<div class="form-group col-md-8">
 			<label>Treatment</label>
-			<input type="text" class="form-control" name="treatment" placeholder="Treatment Details" value="{{employee.treatment}}">
+			<input type="text" class="form-control" name="treatment" placeholder="Treatment Details" value="{{treatment.treatment}}">
 		</div>
 		<div class="form-group col-md-4">
 			<label>Cost in USD</label>
-			<input type="text" class="form-control" name="cost" placeholder="Cost" value="{{employee.cost}}">
+			<input type="text" class="form-control" name="cost" placeholder="Cost" value="{{treatment.cost}}">
 			<div class="text-danger">
-				{{employee.costError}}</div>
+				{{treatment.costError}}</div>
 		</div>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input type="text" class="form-control" name="email" placeholder="Email" value="{{employee.email}}">
+        <input type="text" class="form-control" name="email" placeholder="Email" value="{{treatment.email}}">
         <div class="text-danger">
-            {{employee.emailError}}</div>
+            {{treatment.emailError}}</div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Mobile</label>
-            <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="{{employee.mobile}}">
+            <input type="text" class="form-control" name="mobile" placeholder="Mobile" value="{{treatment.mobile}}">
 			<div class="text-danger">
-				{{employee.mobileError}}</div>
+				{{treatment.mobileError}}</div>
         </div>
         <div class="form-group col-md-6">
             <label>City</label>
-            <input type="text" class="form-control" name="city" placeholder="City" value="{{employee.city}}">
+            <input type="text" class="form-control" name="city" placeholder="City" value="{{treatment.city}}">
         </div>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
-        <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+        <a class="btn btn-secondary" href="/treatments/list"><i class="fa fa-list-alt"></i> View All</a>
 		<div class="text-danger">
-				{{employee.generalError}}</div>
+				{{treatment.generalError}}</div>
     </div>
 		
 </form>

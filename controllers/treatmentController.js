@@ -2,11 +2,11 @@ const express = require('express');
 var router = express.Router();
 var moment = require('moment');
 const mongoose = require('mongoose');
-const Employee = mongoose.model('Employee');
+const Treatment = mongoose.model('treatment');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 router.get('/',ensureAuthenticated, (req, res) => {
-    res.render("employee/addOrEdit", {
+    res.render("treatments/addOrEdit", {
         viewTitle: "Insert a New Treatment"
     });
 });
@@ -18,63 +18,62 @@ router.post('/',ensureAuthenticated, (req, res) => {
         updateRecord(req, res);
 });
 
-
 function insertRecord(req, res) {
-    var employee = new Employee();
-    employee.fullName = req.body.fullName;
-	employee.vehicle = req.body.vehicle;
-	employee.treatment = req.body.treatment;
-	employee.cost = req.body.cost;
-	employee.created_at = moment().format('MMMM Do YYYY, h:mm:ss a');
-    employee.mobile = req.body.mobile;
-	employee.email = req.body.email;
-    employee.city = req.body.city;
+    var treatment = new Treatment();
+    treatment.fullName = req.body.fullName;
+	treatment.vehicle = req.body.vehicle;
+	treatment.treatment = req.body.treatment;
+	treatment.cost = req.body.cost;
+	treatment.created_at = moment().format('MMMM Do YYYY, h:mm:ss a');
+    treatment.mobile = req.body.mobile;
+	treatment.email = req.body.email;
+    treatment.city = req.body.city;
 	
-	switch (employee.vehicle) {
+	switch (treatment.vehicle) {
 		case 'Colorado':
-            employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-colorado-1.jpg";
+            treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-colorado-1.jpg";
             break;
 		case 'Cruze':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-cruze-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-cruze-1.jpg";
 			break;
 		case 'Equinox':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-equinox-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-equinox-1.jpg";
 			break;
 		case 'Impala':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-impala-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-impala-1.jpg";
 			break;
 		case 'Malibu':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-malibu-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-malibu-1.jpg";
 			break;
 		case 'Silverado':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-silverado-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-silverado-1.jpg";
 			break;
 		case 'Suburban':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-suburban-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-suburban-1.jpg";
 			break;
 		case 'Tahoe':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-tahoe-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-tahoe-1.jpg";
 			break;
 		case 'Traverse':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-traverse-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-traverse-1.jpg";
 			break;
 		case 'Trax':
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-trax-1.jpg";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/2019-awards-trax-1.jpg";
 			break;
 		default:
-			employee.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png";
+			treatment.img = "https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png";
 			break;
     }
 	
-    employee.save((err, doc) => {
+    treatment.save((err, doc) => {
         if (!err)
-            res.redirect('employee/list');
+            res.redirect('treatments/list');
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
-                res.render("employee/addOrEdit", {
+                res.render("treatments/addOrEdit", {
                     viewTitle: "Insert a New Treatment",
-                    employee: req.body
+                    treatment: req.body
                 });
             }
             else
@@ -121,17 +120,17 @@ function updateRecord(req, res) {
 			break;
     }
 	
-    Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    Treatment.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
 		
 	if (!err) { 
 		
-        res.redirect('employee/list'); }
+        res.redirect('treatments/list'); }
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
-                res.render("employee/addOrEdit", {
-                    viewTitle: 'Update Employee',
-                    employee: req.body
+                res.render("treatments/addOrEdit", {
+                    viewTitle: 'Update Treatments',
+                    treatments: req.body
                 });
             }
             else
@@ -141,15 +140,15 @@ function updateRecord(req, res) {
 }
 
 router.get('/list',ensureAuthenticated, (req, res) => {
-    Employee.find((err, docs) => {
+    Treatment.find((err, docs) => {
         if (!err) {
-            res.render("employee/list", {
+            res.render("treatments/list", {
                 viewTitle: "Treatments List" ,
 				list: docs
             });
         }
         else {
-            console.log('Error in retrieving employee list :' + err);
+            console.log('Error in retrieving treatments list :' + err);
         }
     });
 });
@@ -180,23 +179,24 @@ function handleValidationError(err, body) {
 }
 
 router.get('/:id',ensureAuthenticated, (req, res) => {
-    Employee.findById(req.params.id, (err, doc) => {
+    Treatment.findById(req.params.id, (err, doc) => {
         if (!err) {
-            res.render("employee/addOrEdit", {
+            res.render("treatments/addOrEdit", {
                 viewTitle: "Update Treatment",
-                employee: doc
+                treatment: doc
             });
         }
     });
 });
 
 router.get('/delete/:id',ensureAuthenticated, (req, res) => {
-    Employee.findByIdAndRemove(req.params.id, (err, doc) => {
+    Treatment.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/employee/list');
+            res.redirect('/treatments/list');
         }
-        else { console.log('Error in employee delete :' + err); }
+        else { console.log('Error in delete treatment:' + err); }
     });
 });
 
 module.exports = router;
+

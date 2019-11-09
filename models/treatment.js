@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var employeeSchema = new mongoose.Schema({
+var treatmentsSchema = new mongoose.Schema({
     fullName: {
         type: String,
         required: 'This field is required.',
@@ -46,12 +46,12 @@ var employeeSchema = new mongoose.Schema({
 });
 
 // Custom validation for email
-employeeSchema.path('email').validate((val) => {
+treatmentsSchema.path('email').validate((val) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
-employeeSchema.pre('save', function(next){
+treatmentsSchema.pre('save', function(next){
     now = new Date(Date.now);
     this.updated_at = now.toDateString() ;
     if(!this.created_at) {
@@ -60,4 +60,6 @@ employeeSchema.pre('save', function(next){
     next();
 });
 
-mongoose.model('Employee', employeeSchema);
+const Treatment = mongoose.model('treatment', treatmentsSchema);
+
+module.exports = Treatment;

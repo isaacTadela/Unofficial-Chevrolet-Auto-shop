@@ -7,8 +7,8 @@ const bodyparser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
- 
-const employeeController = require('./controllers/employeeController');
+const mongoose = require('mongoose');
+const treatmentController = require('./controllers/treatmentController');
 
 var app = express();
 app.use(bodyparser.urlencoded({
@@ -54,4 +54,4 @@ app.listen(PORT, console.log(`Server started on port ${PORT}`));
 // Routes
 app.use('/', require('./routes/users.js'));
 //app.use('/users', require('./routes/users.js'));
-app.use('/employee', require('./controllers/employeeController.js'));
+app.use('/treatments', require('./controllers/treatmentController.js'));
