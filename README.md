@@ -11,5 +11,7 @@ Cluster named cluster1, a database named 'chevroletGarage' and 2 collections 'tr
 Go to 'webProj-master\webProj-master\models\db.js' and update your password and user name from your MongoDB account.
 
 run
+
 npm install
+
 npm start
