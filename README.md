@@ -1,4 +1,4 @@
-# webProj
+#Unoffical Chevrolte Auto shop.
 This project is a simple web app with CRUD operations,
 i used a HTML, CSS and JS for the front end, NodeJS in the back and MongoDB Atlas cloud for a NoSQL database system.
 (images a stored in an S3 bucket)
