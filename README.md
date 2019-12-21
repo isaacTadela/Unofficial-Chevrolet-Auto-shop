@@ -6,19 +6,26 @@ i used a HTML, CSS and JS for the front end, NodeJS in the back and MongoDB Atla
 
 
 ## Getting Started
+
+### Prerequisites
 In case you want to use it yourself you will need to prepare the following:
 
-In your MongoDB account you should have:
+MongoDB account with:
 Cluster named cluster1, a database named 'chevroletGarage' and 2 collections 'treatments' and 'users'.
 
-Go to '.env_sample' update your password and user name from your MongoDB account and change file name to '.env'.
+You need to have the following installed:
 
-```
-run
-```
+1. Nodejs
+2. NPM
+3. Install the NodeJS dependencies via the following command:
+
 ```
 npm install
 ```
+
+Go to '.env_sample' update your password and user name to your MongoDB account and change the file name to '.env'.
+
+and start
 ```
 npm start
 ```
