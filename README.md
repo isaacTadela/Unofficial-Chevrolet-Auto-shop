@@ -15,3 +15,5 @@ run
 npm install
 
 npm start
+
+![Screenshot of home page](home.png)
