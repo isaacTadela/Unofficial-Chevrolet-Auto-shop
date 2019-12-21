@@ -16,4 +16,12 @@ npm install
 
 npm start
 
+
+Home page
 ![Screenshot of home page](home.PNG)
+
+Inserting a treatment page
+![Screenshot of inserting a treatment page](insert.PNG)
+
+Tabel page
+![Screenshot of tabel page](table.PNG)
