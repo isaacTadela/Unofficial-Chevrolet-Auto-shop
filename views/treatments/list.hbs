@@ -1,0 +1,49 @@
+<div class="col-xs-8 col-md-6 m-auto">
+<a href="/" ><img src="https://elasticbeanstalk-eu-west-3-720322189317.s3.eu-west-3.amazonaws.com/Chevrolet-logo1.png" 
+	width="100%" height="100%"></a>
+</div>
+	
+<div class="col-md-11 m-auto" >
+    <div class="card card-body">
+	
+<h3>{{viewTitle}}<a class="btn btn-secondary" href="/users/logout" style="float: right;"><i class="fas fa-sign-out-alt"></i> Log out</a></h3>
+<a class="btn btn-secondary" style="width:26%" href="/treatments" ><i class="fa fa-plus"></i> Insert a New Treatment</a><br><br>
+
+<table id="example" class="table table-striped table-bordered" style="table-layout: fixed; width: 100%">
+    <thead>
+        <tr>
+            <th style="width: 30px">Full Name</th>
+			<th style="width: 50px">Vehicle image</th>
+			<th style="width: 30px">Vehicle model</th>
+			<th style="width: 70px">Treatment</th>
+			<th style="width: 15px">Cost</th>
+			<th style="width: 40px">Created at</th>
+            <th style="width: 40px">Mobile</th>
+			<th style="width: 50px">Email</th>
+            <th style="width: 20px">City</th>
+            <th style="width: 55px">Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.fullName}}</td>
+			<td><img src={{this.img}} style="width:100%;"></td>
+			<td>{{this.vehicle}}</td>
+			<td>{{this.treatment}}</td>
+			<td>{{this.cost}} $</td>
+			<td>{{this.created_at}}</td>
+			<td>{{this.mobile}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.city}}</td>
+			
+            <td>
+                <a href="/treatments/{{this._id}}"><i class="far fa-edit"></i></a>
+                <a href="/treatments/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+</div>
