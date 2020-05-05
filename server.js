@@ -11,6 +11,11 @@ const mongoose = require('mongoose');
 const treatmentController = require('./controllers/treatmentController');
 const FacebookStrategy = require('passport-facebook').Strategy;
 
+
+const Handlebars = require('handlebars');
+// Import function exported by newly installed node modules.
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+
 // Passport Config
 require('./config/passport')(passport);
 
@@ -45,9 +50,11 @@ app.use(function(req, res, next) {
 
 app.use(bodyparser.json());
 app.set('views', path.join(__dirname, '/views/'));
+
 app.engine('hbs', exphbs(
 { 	extname: 'hbs', 
 	defaultLayout: 'mainLayout', 
+	hbs: allowInsecurePrototypeAccess(Handlebars),
 	layoutsDir: __dirname + '/views/layouts/' }));
 app.set('view engine', 'hbs');
 

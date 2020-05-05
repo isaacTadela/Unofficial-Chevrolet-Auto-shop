@@ -150,7 +150,7 @@ router.get('/list',ensureAuthenticated, (req, res) => {
         else {
             console.log('Error in retrieving treatments list :' + err);
         }
-    });
+    }).lean();
 });
 
 function handleValidationError(err, body) {

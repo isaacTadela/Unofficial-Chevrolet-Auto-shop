@@ -1,2 +1,4 @@
 .env
 node_modules/
+k.pem
+cmds.txt
