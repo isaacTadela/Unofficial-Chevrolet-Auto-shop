@@ -2,7 +2,7 @@
 
 This project is a simple web app with CRUD operations,
 i used a HTML, CSS and JS for the front end, NodeJS in the back and MongoDB Atlas cloud for a NoSQL database system.
-I use EC2 to get it running and you can see it at tadela.net
+I use EC2 to get it running and you can see it at <http://www.tadela.net>
 
 
 ## Getting Started
