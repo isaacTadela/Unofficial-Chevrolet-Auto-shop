@@ -20,7 +20,7 @@
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.15",
+    "mongoose": "^5.12.3",
     "mongoose-find-one-or-create": "^0.2.0",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
