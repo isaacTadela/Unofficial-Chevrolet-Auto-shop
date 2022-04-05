@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "mongoose": "^5.11.15",
     "mongoose-find-one-or-create": "^0.2.0",
     "nodemon": "^2.0.7",
